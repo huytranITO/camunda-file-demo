@@ -1,0 +1,1676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="eb_asset_template_checklist_1" name="Checklist danh mục biểu mẫu Hồ sơ tín dụng" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.8.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <decision id="eb_asset_template" name="Checklist danh mục biểu mẫu Hồ sơ tài sản" camunda:versionTag="1.0">
+    <decisionTable id="DecisionTable_07gk85c" hitPolicy="COLLECT">
+      <input id="InputClause_1o01dgc" label="Loại tài sản" biodi:width="150">
+        <inputExpression id="LiteralExpression_1j0my87" typeRef="string">
+          <text>assetType</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1bq3j4i">
+          <text></text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1csk2xb" label="Trạng thái tài sản" biodi:width="150">
+        <inputExpression id="LiteralExpression_19rbmzg" typeRef="string">
+          <text>assetStatus</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_00cyvnj">
+          <text></text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1sqnvbp" label="Loại hợp đồng thế chấp">
+        <inputExpression id="LiteralExpression_1r0fmfc" typeRef="string">
+          <text>mortgageContractType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1sugcm9" label="Mối quan hệ chủ TS và KH" biodi:width="192">
+        <inputExpression id="LiteralExpression_1yuwdlj" typeRef="string">
+          <text>relationOwnerType</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0l1nrfo">
+          <text></text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1mjlozm" label="Công trình trên đất" biodi:width="150">
+        <inputExpression id="LiteralExpression_1g26qcm" typeRef="boolean">
+          <text>construction</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1x1y4il" label="TS soạn chung " biodi:width="150">
+        <inputExpression id="LiteralExpression_1qkdnqc" typeRef="boolean">
+          <text>generalDrafting</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_094nbqf" label="TS được chọn">
+        <inputExpression id="LiteralExpression_0l7xpac" typeRef="boolean">
+          <text>chosenAsset</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0pxd0lw" label="Id tài sản">
+        <inputExpression id="LiteralExpression_04frcdq" typeRef="long">
+          <text>assetId</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_07ex5ji" label="Ids soạn chung">
+        <inputExpression id="LiteralExpression_1lsfkcf" typeRef="string">
+          <text>generalIds</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_16fdvq8" label="Condition" biodi:width="282">
+        <inputExpression id="LiteralExpression_12xhhx1" typeRef="string">
+          <text>condition</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1hi692a" label="Loại phê duyệt">
+        <inputExpression id="LiteralExpression_0ip5bhq" typeRef="string">
+          <text>approvalType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0f96r0n" label="Common Asset Id">
+        <inputExpression id="LiteralExpression_12db3hx" typeRef="string">
+          <text>commonAssetId</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_148g6n2" label="Code" name="docCode" typeRef="json" biodi:width="478" />
+      <rule id="DecisionRule_0ewca8u">
+        <inputEntry id="UnaryTests_0ari64i">
+          <text>"LTS01","V401","V402","V403","V404","V405","V406"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fkdppb">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_077vbtw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mb4wlk">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rribm1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hc2s4l">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wotgub">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jvzz3m">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rzv883">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0l82fkd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ht2php">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03e8r34">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ysdxov">
+          <text>[
+  {
+    "code": "'04134",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ew9nz3">
+        <inputEntry id="UnaryTests_0dtfmvn">
+          <text>"LTS01","V401","V402","V403","V404","V405","V406"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_056i2aq">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ynayua">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1awtqt5">
+          <text>"QHCTS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nktjnu">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jfhqhf">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1da3mgh">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ck4r8d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cufak4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0m2ebuh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cj9hed">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12vaubk">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04guxh2">
+          <text>[
+  {
+    "code": "04135",
+    "isRequired": false,
+    "isSystemGenerated": false,
+      "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1f0qlpz">
+        <inputEntry id="UnaryTests_0o56lo5">
+          <text>"LTS02","V601","V602","V603","V604","V605"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mm2woy">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b0jorj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1geqkl6">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1us3gmz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18ypsce">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0r1nre8">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r7c5nq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pmtet8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nlb7b8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_194qqrp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mlgnvd">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1x2k8ry">
+          <text>[
+  {
+    "code": "04136",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{"shortName":"HĐTCOTO", "assetId":assetId,
+       "commonAssetId":commonAssetId}
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_18cs6ox">
+        <inputEntry id="UnaryTests_044boff">
+          <text>"LTS02","V601","V602","V603","V604","V605"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1h39zca">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pusypc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0we11v7">
+          <text>"QHCTS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h5wi7j">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0htj9a1">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hl5g8h">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b38ewk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1afl7to">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15d35k8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dbehg8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yrq5um">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kzglsj">
+          <text>[
+  {
+    "code": "04137",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{"shortName":"HĐTCOTO", "assetId":assetId,
+       "commonAssetId":commonAssetId}
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1yy86r1">
+        <inputEntry id="UnaryTests_0698cje">
+          <text>"LTS01","V401","V402","V403","V404","V405","V406"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kgdg0s">
+          <text>"AS01","AS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g46ai0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_146id2d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fm2mfe">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cki2vn">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ncznes">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0e8yp0h">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0a603jn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_136wn2y">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1v7nq32">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06xee7g">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vngkv6">
+          <text>[
+  {
+    "code": "04138",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0fsl7st">
+        <inputEntry id="UnaryTests_0i1mfst">
+          <text>"LTS02","V601","V602","V603","V604","V605"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1935sio">
+          <text>"AS01","AS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xkxryq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0danfq9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08s235d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rmu7ex">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_068bb7b">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02ockro">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_152ihm2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_070i0es">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j4nnro">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tizfly">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pninqi">
+          <text>[
+  {
+    "code": "04139",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jcxyze">
+        <inputEntry id="UnaryTests_0vg5uvy">
+          <text>"LTS01","V401","V402","V403","V404","V405","V406"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0d3ae5y">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1izrvuc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dtbj0u">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1euh0fi">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uvd6ml">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dlljmb">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ahwi4s">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bffb50">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_184amny">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1oe5y8a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_184sfiq">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17z9yr6">
+          <text>[
+  {
+    "code": "04140",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01jdeh3">
+        <inputEntry id="UnaryTests_0c3oryd">
+          <text>"LTS01","V401","V402","V403","V404","V405","V406"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07x2wy3">
+          <text>"AS01","AS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0phbwth">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17ggqwd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1px3um4">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mf70vz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07pwar7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02sy3f8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_177q3c2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05i3etp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g14xlk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01v6pjk">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1cscqjx">
+          <text>[
+  {
+    "code": "04126",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1atcz9t">
+        <inputEntry id="UnaryTests_0ynkbuf">
+          <text>"LTS01","V401","V402","V403","V404","V405","V406"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_189jzc2">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0azkdec">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ir88qa">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0eaic6q">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1anaux4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jlv3jt">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kndh9i">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_004eux4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jmeghx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0i7km2i">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17qtn02">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1a8oumg">
+          <text>[
+  {
+    "code": "04127",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_012ri78">
+        <inputEntry id="UnaryTests_0c883hr">
+          <text>"LTS02","V601","V602","V603","V604","V605"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jibuun">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13q7dym">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_103wylw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kmfvj4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00cy8ny">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ex7vq7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0768swk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11i0l4t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tetry1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vmgi2r">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ih29k1">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19k640r">
+          <text>[{
+    "code": "04143",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1w1480m">
+        <inputEntry id="UnaryTests_0mpgymc">
+          <text>"LTS02","V601","V602","V603","V604","V605"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0t8w2pi">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vdldje">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ktmzjz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ttfa2q">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0afccjr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uk3e5b">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13h1ebn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05e6m4q">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qjavn1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hnqo38">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p3dy7t">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1g9edkn">
+          <text>[{
+    "code": "04129",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ayvwcb">
+        <inputEntry id="UnaryTests_16f4i6p">
+          <text>"LTS04","V201","V202","V203", "V204"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rv0pz1">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0un9zax">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0q9gcsq">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nn5hni">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wl0hru">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1624b70">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pgowkv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18z8ti8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01gtbi4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0so7ckm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ye9csb">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0yt45a3">
+          <text>[{
+    "code": "04141",
+    "isRequired": false,
+    "isSystemGenerated": false,
+      "props":{"shortName":"HĐCCTG","assetId":assetId,
+       "commonAssetId":commonAssetId}
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0uv2114">
+        <inputEntry id="UnaryTests_1272xml">
+          <text>"LTS04","V201","V202","V203", "V204"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02f4x6q">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18am3h5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16t0bqy">
+          <text>"QHCTS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1iwaaf1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ww9btk">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gknsiu">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hcfiz0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0i0bwsw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0urrqw1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gfj4c6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16d9p2x">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_029w5ud">
+          <text>[{
+    "code": "04142",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{"shortName":"HĐCCTG","assetId":assetId,
+       "commonAssetId":commonAssetId}
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17l88am">
+        <inputEntry id="UnaryTests_17l5f8k">
+          <text>"LTS01","LTS02","LTS04","V201","V202","V203","V204","V401","V402","V403","V404","V405","V406","V601","V602","V603","V604","V605"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lkoit0">
+          <text>"AS01","AS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lg2lix">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10yvcvs">
+          <text>"QHCTS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1um0hi7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ze9je3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12ijxcr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yiyi5d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0j4cwb3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0i2xaw1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0a74b2x">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kyzkcn">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vhtuum">
+          <text>[{
+    "code": "04132",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1pinnyd">
+        <inputEntry id="UnaryTests_12zb7rm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pd3v8d">
+          <text>"AS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04hxjvv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jw820n">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p6altk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mp3x0s">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gxqd50">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0n61qih">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0x48sk8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0w4ndpq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07qm5vt">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j95y6l">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0iwfj6r">
+          <text>[{
+    "code": "04133",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_00zfl2c">
+        <inputEntry id="UnaryTests_04z0d4e">
+          <text>"LTS01","V401","V402","V403","V404","V405","V406"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kjve4j">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sfljmo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lwc03h">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m014z3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w5vtlx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xd5pbx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xmzutw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w1zwsj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v2b6qa">
+          <text>not(list contains(split(generalIds,"\s*,\s*"),string(assetId)))</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0l9a7om">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1517846">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1xvzzsu">
+          <text>[{
+    "code": "04119",
+    "isRequired": false,
+    "isSystemGenerated": false,
+      "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1vhr8hz">
+        <inputEntry id="UnaryTests_0lrp8zj">
+          <text>"LTS01","V401","V402","V403","V404","V405","V406"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06g4x8l">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ckpfe3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1u2jmc7">
+          <text>"QHCTS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ko02qc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g21mkr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ukkq0j">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02xwwya">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yczzae">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16d2u12">
+          <text>not(list contains(split(generalIds,"\s*,\s*"),string(assetId)))</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i1tupg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0arr9yc">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1y8iij5">
+          <text>[{
+    "code": "04120",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1kgah1q">
+        <inputEntry id="UnaryTests_1s3gl8v">
+          <text>"LTS02","V601","V602","V603","V605"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07gbwcl">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ilyhkc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_055efdl">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zcrd2e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05x3z2u">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jlgqhd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0obyfnx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1genofm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1d627h6">
+          <text>not(list contains(split(generalIds,"\s*,\s*"),string(assetId)))</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dswb8y">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_139bg3s">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dvu5gg">
+          <text>[{
+    "code": "04121",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{"shortName":"HĐTCOTO", "assetId":assetId,
+       "commonAssetId":commonAssetId}
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jf77kb">
+        <inputEntry id="UnaryTests_0fyye1z">
+          <text>"LTS02","V601","V602","V603","V605"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ad2m25">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12ayrev">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19xyr9p">
+          <text>"QHCTS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1exmqfq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17fkzk4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08fz61e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p1y4qu">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ee12k6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vn37pw">
+          <text>not(list contains(split(generalIds,"\s*,\s*"),string(assetId)))</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wl92bx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0htitm4">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0byickf">
+          <text>[{
+    "code": "04122",
+    "isRequired": false,
+    "isSystemGenerated": false,
+      "props":{"shortName":"HĐTCOTO", "assetId":assetId,
+       "commonAssetId":commonAssetId}
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_11p97si">
+        <inputEntry id="UnaryTests_0vbva76">
+          <text>"LTS01","V401","V402","V403","V404","V405","V406"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lcybx7">
+          <text>"AS01","AS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04p9aet">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02ubbc5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ol1c8a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0afiozg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jemf2a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x53wqi">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01rpc79">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pf4nhk">
+          <text>not(list contains(split(generalIds,"\s*,\s*"),string(assetId)))</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1oovuaw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kgtdfa">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1k1h2ss">
+          <text>[{
+    "code": "04123",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1g18jat">
+        <inputEntry id="UnaryTests_0x5l5ra">
+          <text>"LTS02","V601","V602","V603","V604","V605"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gpfqd1">
+          <text>"AS01","AS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h02djx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mz7wq1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1be68es">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1arwjsm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nabuv9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0erot7e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0i3leai">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0346o6x">
+          <text>not(list contains(split(generalIds,"\s*,\s*"),string(assetId)))</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10uwp8c">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ajyh6m">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15vcepc">
+          <text>[{
+    "code": "04124",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1fd71ks">
+        <inputEntry id="UnaryTests_0odrzwb">
+          <text>"LTS01","V401","V402","V403","V404","V405","V406"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oaaqt8">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u99lp4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p0w6v3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08lhzai">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_185haj0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1c663gw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0er9kw8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0icv30a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hwx1ih">
+          <text>not(list contains(split(generalIds,"\s*,\s*"),string(assetId)))</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12flodo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zpzhn5">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kyz2en">
+          <text>[{
+    "code": "04125",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0dryrkq">
+        <inputEntry id="UnaryTests_1x0ocih">
+          <text>"LTS02","V601","V602","V603","V604","V605"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0recr19">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ibuomo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u74lld">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ltnfhi">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09p2rhv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_023uan0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nfzzy5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13uo1c7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yc6esc">
+          <text>not(list contains(split(generalIds,"\s*,\s*"),string(assetId)))</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p2z7sk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xeco68">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1sjkjv8">
+          <text>[{
+    "code": "04128",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1kz4oto">
+        <inputEntry id="UnaryTests_010su5d">
+          <text>"LTS04","V201","V202","V203", "V204"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1weayhf">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0spetis">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bhgbsr">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wlcbqd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rd88ni">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07gd1pl">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dnrrfp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_147zck4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0777yv1">
+          <text>not(list contains(split(generalIds,"\s*,\s*"),string(assetId)))</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gidl4s">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mg1eh0">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cxjnfq">
+          <text>[{
+    "code": "04130",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{"shortName":"HĐCCTG","assetId":assetId,
+       "commonAssetId":commonAssetId}
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1hfaxa5">
+        <inputEntry id="UnaryTests_1ol5pom">
+          <text>"LTS04","V201","V202","V203", "V204"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kj0797">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xcm3r5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01xxunr">
+          <text>"QHCTS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lp4qgt">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ns1jz4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10oaa1f">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wbxpbv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v96omt">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mu64vq">
+          <text>not(list contains(split(generalIds,"\s*,\s*"),string(assetId)))</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06sa35u">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yylov3">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1tnivvp">
+          <text>[{
+    "code": "04131",
+    "isRequired": false,
+    "isSystemGenerated": false,
+      "props":{"shortName":"HĐCCTG","assetId":assetId,
+       "commonAssetId":commonAssetId}
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0sseksa">
+        <inputEntry id="UnaryTests_1p6059z">
+          <text>"V903"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dgeqi6">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mpph14">
+          <text>"TWO_PARTY"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mn4nqw">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g3st5t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03h3aeh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vqdsa1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1k4552r">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1loou2w">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1d0295b">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gdus7e">
+          <text>"AT01","AT02","AT03"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fe3947">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gkt7un">
+          <text>[{
+    "code": "04161",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0chfrkg">
+        <inputEntry id="UnaryTests_0b0q2iv">
+          <text>"V903"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ve02ob">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19tf80p">
+          <text>"THREE_PARTY"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yzcbah">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xqbvd8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ti0vrp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1oo0gt5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ltbou1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03sryws">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dhyj0o">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vqvbod">
+          <text>"AT01","AT02","AT03"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wcr2re">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0y1zu8y">
+          <text>[{
+    "code": "04162",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1u5v3ey">
+        <inputEntry id="UnaryTests_19gnv5f">
+          <text>"V903"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0i051ty">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mzu1pz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1aa5tfh">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wtcn7f">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h1icjt">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0d0rewd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1t6cgpe">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1phc31t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wut9ft">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04if0ti">
+          <text>"AT01","AT02","AT03"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wvpknn">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0li3q4z">
+          <text>[{
+    "code": "04163",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ctbzj9">
+        <inputEntry id="UnaryTests_11x0qbp">
+          <text>"V903"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0osocsm">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06vrxy2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yc5hh5">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zb605p">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qcw78n">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_175ogoo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rtfa53">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_017cmz1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yxc2m1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dyr9x6">
+          <text>"AT01","AT02","AT03"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gmctg0">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0rsp710">
+          <text>[{
+    "code": "04208",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1kn46sr">
+        <inputEntry id="UnaryTests_09hhz09">
+          <text>"V903"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xlrvjq">
+          <text>"AS01"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_149flqk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m6vqy5">
+          <text>"QHCTS02"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0j9svu1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08ctzr6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qofyo7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10kg0rw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uwf0f3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ic6bg2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fweu6x">
+          <text>"AT01","AT02","AT03"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1elpyl6">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ul7esc">
+          <text>[{
+    "code": "04164",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0tnhrl7">
+        <inputEntry id="UnaryTests_1gvduev">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g4w4wz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0g4dgxg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1t7e5q3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z0ejnz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15oj99s">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uc70hh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_190o1eg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tlrxks">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oujdiv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15oe21b">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qcnm0t">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0eoqxi9">
+          <text>[{
+    "code": "04165",
+    "isRequired": false,
+    "isSystemGenerated": false,
+     "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1w8wo43">
+        <inputEntry id="UnaryTests_1llieom">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uo88ww">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11philz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07rad0n">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0aoz6hd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_188r9zw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vajpbj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17tamxw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18oihcn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zqob5z">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02w3dzl">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sghyzx">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ar88v2">
+          <text>[{
+    "code": "04166",
+    "isRequired": false,
+    "isSystemGenerated": false,
+    "props":{
+       "assetId":assetId,
+       "commonAssetId":commonAssetId
+      }
+  }
+]</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="eb_asset_template">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

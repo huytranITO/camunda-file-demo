@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0qkeuas" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.14.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <decision id="legalDocRiskChecklistDT" name="Risk Hồ sơ Pháp Lý">
+    <decisionTable id="DecisionTable_0u1wjzf" hitPolicy="COLLECT">
+      <input id="Input_1" label="Loại Khách Hàng" biodi:width="150">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>customerType</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_108p12h">
+          <text>"RB","EB"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0kyra61" label="Mối Quan Hệ Với Khách Hàng" biodi:width="290">
+        <inputExpression id="LiteralExpression_056s6r0" typeRef="string">
+          <text>customerRelationShip</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_09xeu96">
+          <text></text>
+        </inputValues>
+      </input>
+      <output id="Output_1" label="Mã Hồ Sơ" name="docCode" typeRef="json" biodi:width="462" />
+      <rule id="DecisionRule_1y55xq7">
+        <inputEntry id="UnaryTests_088o85h">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0a89qzo">
+          <text>list contains(["KH"],customerRelationShip)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gig6yi">
+          <text>[
+  {
+    "code": "0101",
+    "isRequired": true,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0103",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0104",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0105",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0106",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0107",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0108",
+    "isRequired": false,
+    "isSystemGenerated": false
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1b1fhm3">
+        <inputEntry id="UnaryTests_1fehk3f">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uhegma">
+          <text>list contains(["V001", "V002","R87"],customerRelationShip)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zrw1ax">
+          <text>[
+  {
+    "code": "0101",
+    "isRequired": true,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0103",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0105",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0106",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0107",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0108",
+    "isRequired": false,
+    "isSystemGenerated": false
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_039pvi4">
+        <inputEntry id="UnaryTests_12j8o0b">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cvzv8p">
+          <text>list contains(["V003", "V004", "V005", "V006", "V007", "V008", "V009", "V010", "V011", "V012", "V016", "R88", "R89", "R90", "R91", "R92","R93", "R94", "R95", "R96", "R97", "R98", "R99", "R101", "R102", "R103", "R104", "R105"],customerRelationShip)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0suvf11">
+          <text>[
+  {
+    "code": "0101",
+    "isRequired": true,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0102",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0103",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0104",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0105",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0106",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0107",
+    "isRequired": false,
+    "isSystemGenerated": false
+  },
+  {
+    "code": "0108",
+    "isRequired": false,
+    "isSystemGenerated": false
+  }
+]</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="legalDocRiskChecklistDT">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

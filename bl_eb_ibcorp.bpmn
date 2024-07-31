@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="bl_eb_ibcorp_flow" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.0.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:collaboration id="Collaboration_07whrsd">
+    <bpmn:participant id="Participant_83nvskv" name="BPM Bao Lanh IBCorp Uat" processRef="bl_eb_ibcorp_uat" />
+  </bpmn:collaboration>
+  <bpmn:process id="bl_eb_ibcorp_uat" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_1x5i5qt">
+      <bpmn:lane id="Lane_0qyg7hp" name="CCO2">
+        <bpmn:flowNodeRef>IBCORP_CCO2_PROCESSING_STEP</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1kdm4t9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IBCORP_CCO2_ADDITIONAL_STEP</bpmn:flowNodeRef>
+        <bpmn:childLaneSet id="LaneSet_1g3ehf4" />
+      </bpmn:lane>
+      <bpmn:lane id="Lane_15o3x25" name="IBCorp">
+        <bpmn:flowNodeRef>Event_0obkq9j</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_07mw668</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IBCORP_CUSTOMER_ADDITIONAL_STEP</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0sk3adv</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0kj64fb" name="CCO1">
+        <bpmn:flowNodeRef>IBCORP_CCO1_PROCESSING_STEP</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_12xjna7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0rgluaa</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IBCORP_CCO1_ADDITIONAL_STEP</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0qblqtc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0jym3af</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_046550k</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_183jr8g</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IBCORP_CCO1_REVIEW_STEP</bpmn:flowNodeRef>
+        <bpmn:childLaneSet id="LaneSet_1jov8t0" />
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="Event_0obkq9j">
+      <bpmn:outgoing>Flow_066lv7l</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="IBCORP_CCO1_PROCESSING_STEP" name="CCO1 đang xử lý hồ sơ">
+      <bpmn:extensionElements>
+        <camunda:taskListener event="create">
+          <camunda:script scriptFormat="javascript">task.execution.setVariable('taskId',task.getId());
+task.execution.setVariable('step', 'IBCORP_CCO1_PROCESSING_STEP');
+task.execution.setVariable('role', 'CCO1');
+
+// Case KH IBCorp bổ sung HS đẩy lại CCO1
+if(task.execution.getVariable('status') == 'BLIB20') {
+  var histories = task.execution.getVariable('histories');
+  if(histories != null) {
+    for(var i = histories.length - 1; i &gt;= 0; i--) {
+        var hist = histories[i];
+        if((hist.stepBefore == 'IBCORP_CCO1_PROCESSING_STEP' || hist.stepBefore == 'IBCORP_CCO1_ADDITIONAL_STEP') &amp;&amp; hist.stepAfter == 'IBCORP_CUSTOMER_ADDITIONAL_STEP') {
+            task.execution.setVariable('assignee', hist.fromUser);
+break;
+        }
+    }
+  }
+} 
+// Case tạo mới HS
+else {
+  task.execution.setVariable('assignee', '');
+}</camunda:script>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_066lv7l</bpmn:incoming>
+      <bpmn:incoming>Flow_17s0ag6</bpmn:incoming>
+      <bpmn:outgoing>Flow_08uhqah</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_12xjna7" default="Flow_03j92vw">
+      <bpmn:incoming>Flow_08uhqah</bpmn:incoming>
+      <bpmn:outgoing>Flow_13185ab</bpmn:outgoing>
+      <bpmn:outgoing>Flow_03j92vw</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1y7fgen</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="IBCORP_CCO2_PROCESSING_STEP" name="CCO2 đang xử lý yêu cầu">
+      <bpmn:extensionElements>
+        <camunda:taskListener event="create">
+          <camunda:script scriptFormat="javascript">task.execution.setVariable('taskId',task.getId());
+task.execution.setVariable('step', "IBCORP_CCO2_PROCESSING_STEP");
+task.execution.setVariable('role', 'CCO2');
+task.execution.setVariable('assignee', '');
+task.execution.setVariable('status', 'BLIB23');
+// Case CCO1 đẩy hồ sơ lên CCO2
+var histories = task.execution.getVariable('histories');
+if (histories != null) {
+   var hist = null;
+   for (var i = histories.length - 1; i &gt;= 0; i--) {
+      hist = histories[i];
+      if (hist.stepBefore == 'IBCORP_CCO2_PROCESSING_STEP' &amp;&amp; hist.stepAfter == 'IBCORP_CCO1_ADDITIONAL_STEP') {
+         task.execution.setVariable('assignee', hist.fromUser);
+         task.execution.setVariable('status', 'BLIB30');
+         break;
+      }
+   }
+}</camunda:script>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_03j92vw</bpmn:incoming>
+      <bpmn:incoming>Flow_0t6q424</bpmn:incoming>
+      <bpmn:outgoing>Flow_0du5iw5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1kdm4t9" default="Flow_13o2ax9">
+      <bpmn:incoming>Flow_0du5iw5</bpmn:incoming>
+      <bpmn:outgoing>Flow_14f7kuz</bpmn:outgoing>
+      <bpmn:outgoing>Flow_13o2ax9</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Gateway_07mw668" default="Flow_17s0ag6">
+      <bpmn:incoming>Flow_0v113uv</bpmn:incoming>
+      <bpmn:outgoing>Flow_17s0ag6</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1m81dv3</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Gateway_0rgluaa">
+      <bpmn:incoming>Flow_0wi4zvq</bpmn:incoming>
+      <bpmn:outgoing>Flow_1iflabh</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1tpoex6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="IBCORP_CCO2_ADDITIONAL_STEP" name="CCO2 đang soạn lại thư">
+      <bpmn:extensionElements>
+        <camunda:taskListener event="create">
+          <camunda:script scriptFormat="javascript">task.execution.setVariable('taskId',task.getId());
+task.execution.setVariable('step', 'IBCORP_CCO2_ADDITIONAL_STEP');
+task.execution.setVariable('role', 'CCO2');
+task.execution.setVariable('status', 'BLIB13');
+
+// Case CCO1 yêu cầu CCO2 soạn lại thư
+var histories = task.execution.getVariable('histories');
+if(histories != null) {
+  for(var i = histories.length - 1; i &gt;= 0; i--) {
+     var hist = histories[i];
+     if((hist.stepBefore == 'IBCORP_CCO2_PROCESSING_STEP' || hist.stepBefore == 'IBCORP_CCO2_ADDITIONAL_STEP') &amp;&amp; hist.stepAfter == 'IBCORP_CCO1_REVIEW_STEP') {
+         task.execution.setVariable('assignee', hist.fromUser);
+break;
+        }
+    }
+}</camunda:script>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1tpoex6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1yaldvk</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="IBCORP_CCO1_ADDITIONAL_STEP" name="CCO1 đang bổ sung HS">
+      <bpmn:extensionElements>
+        <camunda:taskListener event="create">
+          <camunda:script scriptFormat="javascript">task.execution.setVariable('taskId', task.getId());
+task.execution.setVariable('step', 'IBCORP_CCO1_ADDITIONAL_STEP');
+task.execution.setVariable('role', 'CCO1');
+task.execution.setVariable('status', 'BLIB32');
+
+// Case CCO2 trả hồ sơ lại CCO1
+var histories = task.execution.getVariable('histories');
+if(histories != null) {
+  for(var i = histories.length - 1; i &gt;= 0; i--) {
+     var hist = histories[i];
+     if((hist.stepBefore == 'IBCORP_CCO1_PROCESSING_STEP' || hist.stepBefore == 'IBCORP_CCO1_ADDITIONAL_STEP') &amp;&amp; hist.stepAfter == 'IBCORP_CCO2_PROCESSING_STEP') {
+        task.execution.setVariable('assignee', hist.fromUser);
+break;
+     }
+  }
+} </camunda:script>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_14f7kuz</bpmn:incoming>
+      <bpmn:outgoing>Flow_12563l5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="IBCORP_CUSTOMER_ADDITIONAL_STEP" name="Chờ khách hàng IBCorp bổ sung">
+      <bpmn:extensionElements>
+        <camunda:taskListener event="create">
+          <camunda:script scriptFormat="javascript">task.execution.setVariable('taskId',task.getId());
+task.execution.setVariable('step', 'IBCORP_CUSTOMER_ADDITIONAL_STEP');
+task.execution.setVariable('role', 'CUSTOMER');
+
+task.execution.setVariable('status', 'BLIB2B');
+// CCO1 trả hồ sơ về KH IBCorp, yêu cầu bổ súng hồ sơ
+var histories = task.execution.getVariable('histories');
+if(histories != null) {
+   for(var i = histories.length - 1; i &gt;= 0; i--) {
+      var hist = histories[i];
+      if(hist.stepBefore == 'IBCORP_CUSTOMER_ADDITIONAL_STEP' &amp;&amp; hist.stepAfter == 'IBCORP_CCO1_PROCESSING_STEP') {
+          task.execution.setVariable('assignee', hist.fromUser);
+break;
+      }
+   }
+} </camunda:script>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1y7fgen</bpmn:incoming>
+      <bpmn:incoming>Flow_1t35nw8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0v113uv</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_0qblqtc" default="Flow_0t6q424">
+      <bpmn:incoming>Flow_12563l5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1n5cejg</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0t6q424</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1t35nw8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_0sk3adv">
+      <bpmn:incoming>Flow_1m81dv3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_0jym3af">
+      <bpmn:incoming>Flow_1n5cejg</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_046550k">
+      <bpmn:incoming>Flow_13185ab</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_183jr8g">
+      <bpmn:incoming>Flow_1iflabh</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="IBCORP_CCO1_REVIEW_STEP" name="CCO1 đang kiểm tra thư">
+      <bpmn:extensionElements>
+        <camunda:taskListener event="create">
+          <camunda:script scriptFormat="javascript">task.execution.setVariable('taskId',task.getId());
+task.execution.setVariable('step', 'IBCORP_CCO1_REVIEW_STEP');
+task.execution.setVariable('role', 'CCO1');
+
+task.execution.setVariable('status', 'BLIB31');
+
+// Case CCO2 duyệt hồ sơ về CCO1
+var histories = task.execution.getVariable('histories');
+if(histories != null) {
+  for(var i = histories.length - 1; i &gt;= 0; i--) {
+     var hist = histories[i];
+     if((hist.stepBefore == 'IBCORP_CCO1_REVIEW_STEP' || hist.stepBefore == 'IBCORP_CCO1_ADDITIONAL_STEP' || hist.stepBefore == 'IBCORP_CCO1_PROCESSING_STEP') &amp;&amp; (hist.stepAfter == 'IBCORP_CCO2_PROCESSING_STEP' ||
+hist.stepAfter == 'IBCORP_CCO2_ADDITIONAL_STEP')) {
+        task.execution.setVariable('assignee', hist.fromUser);
+break;
+     }
+  }
+} </camunda:script>
+        </camunda:taskListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_13o2ax9</bpmn:incoming>
+      <bpmn:incoming>Flow_1yaldvk</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wi4zvq</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_066lv7l" sourceRef="Event_0obkq9j" targetRef="IBCORP_CCO1_PROCESSING_STEP">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="take">
+          <camunda:script scriptFormat="javascript">execution.setVariable('status', 'BLIBB2');</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_17s0ag6" sourceRef="Gateway_07mw668" targetRef="IBCORP_CCO1_PROCESSING_STEP">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="take">
+          <camunda:script scriptFormat="javascript">execution.setVariable('status', 'BLIB20');</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_08uhqah" sourceRef="IBCORP_CCO1_PROCESSING_STEP" targetRef="Gateway_12xjna7" />
+    <bpmn:sequenceFlow id="Flow_13185ab" sourceRef="Gateway_12xjna7" targetRef="Event_046550k">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="take">
+          <camunda:script scriptFormat="javascript">execution.setVariable('status', 'BLIB2C');</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${manualClose}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_03j92vw" sourceRef="Gateway_12xjna7" targetRef="IBCORP_CCO2_PROCESSING_STEP">
+      <bpmn:extensionElements />
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1y7fgen" sourceRef="Gateway_12xjna7" targetRef="IBCORP_CUSTOMER_ADDITIONAL_STEP">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${rollbackCustomer}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0t6q424" sourceRef="Gateway_0qblqtc" targetRef="IBCORP_CCO2_PROCESSING_STEP">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="take">
+          <camunda:script scriptFormat="javascript">execution.setVariable('status', 'BLIB30');</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0du5iw5" sourceRef="IBCORP_CCO2_PROCESSING_STEP" targetRef="Gateway_1kdm4t9" />
+    <bpmn:sequenceFlow id="Flow_14f7kuz" sourceRef="Gateway_1kdm4t9" targetRef="IBCORP_CCO1_ADDITIONAL_STEP">
+      <bpmn:extensionElements />
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${rollbackCCO1}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_13o2ax9" sourceRef="Gateway_1kdm4t9" targetRef="IBCORP_CCO1_REVIEW_STEP" />
+    <bpmn:sequenceFlow id="Flow_0v113uv" sourceRef="IBCORP_CUSTOMER_ADDITIONAL_STEP" targetRef="Gateway_07mw668" />
+    <bpmn:sequenceFlow id="Flow_1m81dv3" sourceRef="Gateway_07mw668" targetRef="Event_0sk3adv">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="take">
+          <camunda:script scriptFormat="javascript">execution.setVariable('status', 'BLIB2C');</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${manualClose}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0wi4zvq" sourceRef="IBCORP_CCO1_REVIEW_STEP" targetRef="Gateway_0rgluaa" />
+    <bpmn:sequenceFlow id="Flow_1iflabh" sourceRef="Gateway_0rgluaa" targetRef="Event_183jr8g">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="take">
+          <camunda:script scriptFormat="javascript">execution.setVariable('status', 'BLIB2E');
+</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${manualClose}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1tpoex6" sourceRef="Gateway_0rgluaa" targetRef="IBCORP_CCO2_ADDITIONAL_STEP">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${rollbackCCO2}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1yaldvk" sourceRef="IBCORP_CCO2_ADDITIONAL_STEP" targetRef="IBCORP_CCO1_REVIEW_STEP" />
+    <bpmn:sequenceFlow id="Flow_12563l5" sourceRef="IBCORP_CCO1_ADDITIONAL_STEP" targetRef="Gateway_0qblqtc" />
+    <bpmn:sequenceFlow id="Flow_1t35nw8" sourceRef="Gateway_0qblqtc" targetRef="IBCORP_CUSTOMER_ADDITIONAL_STEP">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${rollbackCustomer}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1n5cejg" sourceRef="Gateway_0qblqtc" targetRef="Event_0jym3af">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="take">
+          <camunda:script scriptFormat="javascript">execution.setVariable('status', 'BLIB2C');</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${manualClose}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:textAnnotation id="TextAnnotation_04yrywy">
+      <bpmn:text>CCO1 trả về KH IBCorp</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_195t36f">
+      <bpmn:text>KH IBCorp hủy HS</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_15jmo5t">
+      <bpmn:text>KH IBCorp bổ sung HS đẩy lại CCO1</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0ysthrp">
+      <bpmn:text>IBCorp khởi tạo yêu cầu trên BPM</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0x8zjmm">
+      <bpmn:text>CCO1 trả về khách hàng IBCorp</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0fqdsez">
+      <bpmn:text>CCO1 hủy HS</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1cv2as0">
+      <bpmn:text>CCO1 hủy HS</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0zv969a">
+      <bpmn:text>CCO2 trả về CCO1</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1hhkw39">
+      <bpmn:text>CCO1 submit HS lên CCO2</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_07z4x0b">
+      <bpmn:text>CCO2 hoàn thành  submit HS lên CCO1 để kiểm tra</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1qk63rz">
+      <bpmn:text>CCO1 bổ sung HS đẩy lại CCO2</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0td4m1d">
+      <bpmn:text>CCO1 đóng HS</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0mdja8g">
+      <bpmn:text>CCO1 trả về CCO2 để soạn lại thư</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1qoudiz">
+      <bpmn:text>CCO2 soạn lại thư đẩy lại CCO1 review</bpmn:text>
+    </bpmn:textAnnotation>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_07whrsd">
+      <bpmndi:BPMNShape id="Participant_05lem0l_di" bpmnElement="Participant_83nvskv" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1985" height="1230" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0kj64fb_di" bpmnElement="Lane_0kj64fb" isHorizontal="true">
+        <dc:Bounds x="190" y="440" width="1950" height="320" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_15o3x25_di" bpmnElement="Lane_15o3x25" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="1950" height="360" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0qyg7hp_di" bpmnElement="Lane_0qyg7hp" isHorizontal="true">
+        <dc:Bounds x="190" y="760" width="1950" height="550" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1n5cejg_di" bpmnElement="Flow_1n5cejg">
+        <di:waypoint x="1085" y="535" />
+        <di:waypoint x="928" y="535" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1t35nw8_di" bpmnElement="Flow_1t35nw8">
+        <di:waypoint x="1110" y="510" />
+        <di:waypoint x="1110" y="300" />
+        <di:waypoint x="950" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12563l5_di" bpmnElement="Flow_12563l5">
+        <di:waypoint x="1200" y="535" />
+        <di:waypoint x="1135" y="535" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yaldvk_di" bpmnElement="Flow_1yaldvk">
+        <di:waypoint x="1630" y="900" />
+        <di:waypoint x="1840" y="900" />
+        <di:waypoint x="1840" y="575" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tpoex6_di" bpmnElement="Flow_1tpoex6">
+        <di:waypoint x="1580" y="560" />
+        <di:waypoint x="1580" y="860" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1iflabh_di" bpmnElement="Flow_1iflabh">
+        <di:waypoint x="1555" y="535" />
+        <di:waypoint x="1388" y="535" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wi4zvq_di" bpmnElement="Flow_0wi4zvq">
+        <di:waypoint x="1790" y="535" />
+        <di:waypoint x="1605" y="535" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m81dv3_di" bpmnElement="Flow_1m81dv3">
+        <di:waypoint x="680" y="275" />
+        <di:waypoint x="680" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0v113uv_di" bpmnElement="Flow_0v113uv">
+        <di:waypoint x="850" y="300" />
+        <di:waypoint x="705" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13o2ax9_di" bpmnElement="Flow_13o2ax9">
+        <di:waypoint x="570" y="1055" />
+        <di:waypoint x="570" y="1150" />
+        <di:waypoint x="2020" y="1150" />
+        <di:waypoint x="2020" y="535" />
+        <di:waypoint x="1890" y="535" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14f7kuz_di" bpmnElement="Flow_14f7kuz">
+        <di:waypoint x="595" y="1030" />
+        <di:waypoint x="1250" y="1030" />
+        <di:waypoint x="1250" y="575" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0du5iw5_di" bpmnElement="Flow_0du5iw5">
+        <di:waypoint x="570" y="960" />
+        <di:waypoint x="570" y="1005" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0t6q424_di" bpmnElement="Flow_0t6q424">
+        <di:waypoint x="1110" y="560" />
+        <di:waypoint x="1110" y="920" />
+        <di:waypoint x="620" y="920" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1y7fgen_di" bpmnElement="Flow_1y7fgen">
+        <di:waypoint x="595" y="650" />
+        <di:waypoint x="870" y="650" />
+        <di:waypoint x="870" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03j92vw_di" bpmnElement="Flow_03j92vw">
+        <di:waypoint x="570" y="675" />
+        <di:waypoint x="570" y="880" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13185ab_di" bpmnElement="Flow_13185ab">
+        <di:waypoint x="545" y="650" />
+        <di:waypoint x="358" y="650" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08uhqah_di" bpmnElement="Flow_08uhqah">
+        <di:waypoint x="570" y="575" />
+        <di:waypoint x="570" y="625" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17s0ag6_di" bpmnElement="Flow_17s0ag6">
+        <di:waypoint x="680" y="325" />
+        <di:waypoint x="680" y="535" />
+        <di:waypoint x="620" y="535" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_066lv7l_di" bpmnElement="Flow_066lv7l">
+        <di:waypoint x="570" y="355" />
+        <di:waypoint x="570" y="495" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="364" y="255" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_1s8auhp" bpmnElement="Event_0obkq9j">
+        <dc:Bounds x="552" y="319" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="311" y="46" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00m3h7q_di" bpmnElement="IBCORP_CCO1_PROCESSING_STEP">
+        <dc:Bounds x="520" y="495" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_12xjna7_di" bpmnElement="Gateway_12xjna7" isMarkerVisible="true">
+        <dc:Bounds x="545" y="625" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1k9lx4x_di" bpmnElement="IBCORP_CCO2_PROCESSING_STEP">
+        <dc:Bounds x="520" y="880" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1kdm4t9_di" bpmnElement="Gateway_1kdm4t9" isMarkerVisible="true">
+        <dc:Bounds x="545" y="1005" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_07mw668_di" bpmnElement="Gateway_07mw668" isMarkerVisible="true">
+        <dc:Bounds x="655" y="275" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1efq9t4" bpmnElement="Gateway_0rgluaa" isMarkerVisible="true">
+        <dc:Bounds x="1555" y="510" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1c32mom" bpmnElement="IBCORP_CCO2_ADDITIONAL_STEP">
+        <dc:Bounds x="1530" y="860" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02s81yz_di" bpmnElement="IBCORP_CCO1_ADDITIONAL_STEP">
+        <dc:Bounds x="1200" y="495" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0ydd258" bpmnElement="IBCORP_CUSTOMER_ADDITIONAL_STEP">
+        <dc:Bounds x="850" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1vdc34o" bpmnElement="Gateway_0qblqtc" isMarkerVisible="true">
+        <dc:Bounds x="1085" y="510" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0sk3adv_di" bpmnElement="Event_0sk3adv">
+        <dc:Bounds x="662" y="172" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0jym3af_di" bpmnElement="Event_0jym3af">
+        <dc:Bounds x="892" y="517" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_046550k_di" bpmnElement="Event_046550k">
+        <dc:Bounds x="322" y="632" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_183jr8g_di" bpmnElement="Event_183jr8g">
+        <dc:Bounds x="1352" y="517" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0im03ad" bpmnElement="IBCORP_CCO1_REVIEW_STEP">
+        <dc:Bounds x="1790" y="495" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_04yrywy_di" bpmnElement="TextAnnotation_04yrywy">
+        <dc:Bounds x="1120" y="340" width="153.29642327650112" height="27.77520385470719" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_195t36f_di" bpmnElement="TextAnnotation_195t36f">
+        <dc:Bounds x="690" y="230" width="120" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_15jmo5t_di" bpmnElement="TextAnnotation_15jmo5t">
+        <dc:Bounds x="690" y="360" width="119.97942789968651" height="39.99314263322884" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0ysthrp_di" bpmnElement="TextAnnotation_0ysthrp">
+        <dc:Bounds x="405" y="380" width="155" height="42" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0x8zjmm_di" bpmnElement="TextAnnotation_0x8zjmm">
+        <dc:Bounds x="630" y="610" width="199.99020376175548" height="29.976489028213166" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0fqdsez_di" bpmnElement="TextAnnotation_0fqdsez">
+        <dc:Bounds x="390" y="610" width="128" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1cv2as0_di" bpmnElement="TextAnnotation_1cv2as0">
+        <dc:Bounds x="950" y="490" width="110" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0kx81yt" bpmnElement="TextAnnotation_0zv969a">
+        <dc:Bounds x="750" y="990" width="209.9780701754386" height="29.98481781376518" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1gynv67" bpmnElement="TextAnnotation_1hhkw39">
+        <dc:Bounds x="580" y="790" width="209.9991565452092" height="29.984817813765183" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0cou7ps" bpmnElement="TextAnnotation_07z4x0b">
+        <dc:Bounds x="750" y="1100" width="209.9991565452092" height="40.48582995951417" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1qk63rz_di" bpmnElement="TextAnnotation_1qk63rz">
+        <dc:Bounds x="750" y="880" width="210" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0y4sul4" bpmnElement="TextAnnotation_0td4m1d">
+        <dc:Bounds x="1420" y="490" width="109.98650472334681" height="29.984817813765183" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1kbs90f" bpmnElement="TextAnnotation_0mdja8g">
+        <dc:Bounds x="1590" y="650" width="149.98734817813764" height="40.48582995951417" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_07ce1cj" bpmnElement="TextAnnotation_1qoudiz">
+        <dc:Bounds x="1850" y="820" width="149.98734817813767" height="40.48582995951417" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

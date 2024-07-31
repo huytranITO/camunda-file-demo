@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="xmtd" name="BTC Xác minh thực địa" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.12.0">
+  <decision id="btc_xmtd" name="">
+    <decisionTable id="decisionTable_1ex5xx7" hitPolicy="COLLECT">
+      <input id="input1" label="Phân hệ" biodi:width="191">
+        <inputExpression id="inputExpression1" typeRef="string">
+          <text>subsystem</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0zz1mbu">
+          <text></text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1l0vbl4" label="Domain type">
+        <inputExpression id="LiteralExpression_0xjicvp" typeRef="string">
+          <text>domainType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0re0ber" label="Loại bộ tiêu chí">
+        <inputExpression id="LiteralExpression_08elekh" typeRef="string">
+          <text>criteriaSuiteType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1jnf7tj" label="Loại địa điểm">
+        <inputExpression id="LiteralExpression_0oxq4pe" typeRef="string">
+          <text>locationType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_00sw6me" label="Địa điểm bổ sung">
+        <inputExpression id="LiteralExpression_03j8a7t" typeRef="string">
+          <text>supporting</text>
+        </inputExpression>
+      </input>
+      <output id="output1" label="Bộ tiêu chí" name="criteriaSuite" typeRef="string" />
+      <rule id="DecisionRule_06omumd">
+        <inputEntry id="UnaryTests_0gf1upj">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1622cm8">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yz4i79">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1f0hoqc">
+          <text>"V001"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0o5c5iy">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1scx0hg">
+          <text>"XMTD_HOKHAU"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0hlz83g">
+        <inputEntry id="UnaryTests_1jb3i15">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0d5llfy">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ddchx8">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03xdi3c">
+          <text>"V002"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yn1sbz">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1tgru81">
+          <text>"XMTD_NOISINHSONG"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0mpwj1r">
+        <inputEntry id="UnaryTests_0y7wsbf">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1klepee">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kjig9w">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16wu880">
+          <text>"V003"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17wmy3a">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03yvfjl">
+          <text>"XMTD_COQUAN"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_11epif2">
+        <inputEntry id="UnaryTests_1nypuzz">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13h83vv">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tjs4so">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02gzatp">
+          <text>"V005"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fr5v4m">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1fvb5z5">
+          <text>"XMTD_CSKD"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0z18798">
+        <inputEntry id="UnaryTests_07vqtnt">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kb10vu">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gf73kz">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ijh16q">
+          <text>"V004"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1apnnqz">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qk0scj">
+          <text>"XMTD_CHOTHUE"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1n9t7e0">
+        <inputEntry id="UnaryTests_0yj3i6y">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u8w98h">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_199n8my">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0akuawm">
+          <text>"V006"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0q9k85d">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_06qc779">
+          <text>"XMTD_KHAC"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1rdlaog">
+        <inputEntry id="UnaryTests_0ytim0x">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gwl85o">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ig7unj">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m22ox4">
+          <text>"V007"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0j4z044">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_12ct1m7">
+          <text>"XMTD_TSBD"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1twr3tz">
+        <inputEntry id="UnaryTests_19pz5mf">
+          <text>list contains(["EB","RB"],subsystem)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01yr3ua">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wti38z">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zj9esz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xmipoz">
+          <text>"Y"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0y56iy5">
+          <text>"XMTD_BOSUNG"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1kx8u6r">
+        <inputEntry id="UnaryTests_1owis85">
+          <text>list contains(["EB","RB"],subsystem)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ab0ojz">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cqya3r">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0c262tt">
+          <text>"V008"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0s2wvj3">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17wu67i">
+          <text>"XMTD_TRUSOCHINH"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02p6wh6">
+        <inputEntry id="UnaryTests_1ewbo5s">
+          <text>list contains(["EB","RB"],subsystem)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02b9qmf">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cxxz4x">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ew504v">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wgljou">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0w4vka5">
+          <text>"XMTD_CSKD_EB"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0g41iy2">
+        <inputEntry id="UnaryTests_0omfaz0">
+          <text>list contains(["EB","RB"],subsystem)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0twm5z3">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0a4gdaz">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wqu1an">
+          <text>"V010"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ir41rz">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0310s37">
+          <text>"XMTD_NHAXUONG"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1dbktc4">
+        <inputEntry id="UnaryTests_1ozyo60">
+          <text>list contains(["EB","RB"],subsystem)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zgpp68">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09tn15e">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jy08bg">
+          <text>"V011"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10f1sn1">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_01s6oe5">
+          <text>"XMTD_NHAMAY"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kvfj7f">
+        <inputEntry id="UnaryTests_0lipx27">
+          <text>list contains(["EB","RB"],subsystem)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dq5mqh">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nb3nou">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1u599eq">
+          <text>"V012"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00ysk7d">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0u0hfsp">
+          <text>"XMTD_KHOBAI"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ot3iaz">
+        <inputEntry id="UnaryTests_0e3vtcj">
+          <text>list contains(["EB","RB"],subsystem)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12a2nqg">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xtv9d4">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sbfqlj">
+          <text>"V013"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fbqjmo">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15u2nqn">
+          <text>"XMTD_CONGTRINH"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01ytunr">
+        <inputEntry id="UnaryTests_0mqjslf">
+          <text>"EB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jug6du">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hjz131">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0s5xrwl">
+          <text>"V007"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1n50ken">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dspgyb">
+          <text>"XMTD_TSBD"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0u5srt7">
+        <inputEntry id="UnaryTests_1oebmqt">
+          <text>"EB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19ka10b">
+          <text>"LOCATION"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r5mga3">
+          <text>"V009"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0k4jy5r">
+          <text>"V006"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zpzi80">
+          <text>"N"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fqla9w">
+          <text>"XMTD_KHAC"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_11nkp2l">
+      <dmndi:DMNShape id="DMNShape_1ww4b64" dmnElementRef="btc_xmtd">
+        <dc:Bounds height="80" width="180" x="150" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" id="definitions_0p1bnof" name="definitions" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.12.0">
+  <decision id="decision_0eoclum" name="">
+    <decisionTable id="decisionTable_1iykoin" hitPolicy="COLLECT">
+      <input id="input1" label="Phân hệ">
+        <inputExpression id="inputExpression1" typeRef="string">
+          <text>module</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_082gq4i" label="Luồng thực địa">
+        <inputExpression id="LiteralExpression_0295zn7" typeRef="string">
+          <text>businessType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_16kbaqa" label="Nguồn yêu cầu XMTĐ">
+        <inputExpression id="LiteralExpression_18btqgr" typeRef="string">
+          <text>sourceType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0igyw13" label="Giai đoạn XMTĐ">
+        <inputExpression id="LiteralExpression_0u4pews" typeRef="string">
+          <text>phaseType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1wb62cl" label="Role">
+        <inputExpression id="LiteralExpression_0pymaoh" typeRef="string">
+          <text>role</text>
+        </inputExpression>
+      </input>
+      <output id="output1" label="Mã hồ sơ" name="docCode" typeRef="json" />
+      <rule id="DecisionRule_12nt8et">
+        <inputEntry id="UnaryTests_06idb78">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0et1m71">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09rjnyp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0929ba2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uq012s">
+          <text>list contains( ["PD_RB_FI_MAKER", "PD_RB_FI_CONTACT"], role)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15n2c5k">
+          <text>[
+  {
+    "code": "0901",
+    "isRequired": false,
+    "isSystemGenerated": true
+  },
+  {
+    "code": "0902",
+    "isRequired": false,
+    "isSystemGenerated": true
+  },
+  {
+    "code": "0903",
+    "isRequired": false,
+    "isSystemGenerated": false
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0a2qsjn">
+        <inputEntry id="UnaryTests_1r8pn5d">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14omabn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17wlr6n">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1y7uqj4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zyn318">
+          <text>list contains( ["PD_RB_FI"], role)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0gojhig">
+          <text>[
+  {
+    "code": "0901",
+    "isRequired": true,
+    "isSystemGenerated": true
+  },
+  {
+    "code": "0902",
+    "isRequired": false,
+    "isSystemGenerated": true
+  },
+  {
+    "code": "0903",
+    "isRequired": false,
+    "isSystemGenerated": false
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0313zfz">
+        <inputEntry id="UnaryTests_05g0atu">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1a3qgng">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gwg8rw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zctlqp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0k4aotg">
+          <text>list contains( ["PD_RB_FI_APPR"], role)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kgq4hk">
+          <text>[
+  {
+    "code": "0901",
+    "isRequired": true,
+    "isSystemGenerated": true
+  },
+  {
+    "code": "0902",
+    "isRequired": true,
+    "isSystemGenerated": true
+  },
+  {
+    "code": "0903",
+    "isRequired": false,
+    "isSystemGenerated": false
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1dpeb1l">
+        <inputEntry id="UnaryTests_19utdj0">
+          <text>"EB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08l3bvm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_134m7j1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tpm88y">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uapkqf">
+          <text>"PD_EB_CI_XMTD"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jtb62q">
+          <text>[
+  {
+    "code": "0904",
+    "isRequired": true,
+    "isSystemGenerated": true
+  },
+  {
+    "code": "0903",
+    "isRequired": false,
+    "isSystemGenerated": false
+  }
+]</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nhuseo">
+        <inputEntry id="UnaryTests_10qr0si">
+          <text>"EB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08hwx2m">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xi1drm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1decxhs">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xtpfl3">
+          <text>"PD_EB_CI_MAKER"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ojk30v">
+          <text>[
+  {
+    "code": "0904",
+    "isRequired": false,
+    "isSystemGenerated": true
+  },
+  {
+    "code": "0903",
+    "isRequired": false,
+    "isSystemGenerated": false
+  }
+]</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

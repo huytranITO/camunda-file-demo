@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_15ugoao" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <decision id="Decision_4" name="Hạn mức RR đặc biệt">
+    <decisionTable id="DecisionTable_0likx4e" hitPolicy="COLLECT">
+      <input id="Input_1" label="Hạn mức RR đặc biệt" biodi:width="150">
+        <inputExpression id="InputExpression_1" typeRef="double">
+          <text>total</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1q8h4xi" label="Phân hệ KH" biodi:width="150">
+        <inputExpression id="LiteralExpression_1c3e36l" typeRef="string">
+          <text>customerType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0p2cvjt" label="Nhóm tiêu chí">
+        <inputExpression id="LiteralExpression_11gd86g" typeRef="string">
+          <text>riskGroup</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_01emr10" label="Luồng phê duyệt" biodi:width="150">
+        <inputExpression id="LiteralExpression_0q147vm" typeRef="string">
+          <text>approvalFlow</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0yhk69b" label="Mục đích trình" biodi:width="150">
+        <inputExpression id="LiteralExpression_0l5dbpn" typeRef="string">
+          <text>submissionPurpose</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1jz49kt" label="Rủi ro tín dụng" biodi:width="150">
+        <inputExpression id="LiteralExpression_0ltr1uk" typeRef="boolean">
+          <text>creditRiskType</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Authority Code" name="authorizationOfLoanLimitInRisk" typeRef="string" biodi:width="274" />
+      <rule id="DecisionRule_1x3q886">
+        <inputEntry id="UnaryTests_1ixi4nw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1id6lp3">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gz7day">
+          <text>list contains(riskGroup, "V002")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03rft0m">
+          <text>"V001"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00vi5vg">
+          <text>"V001"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0r1lmaz">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fbo4tr">
+          <text>"TQC12"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1vgtesw">
+        <inputEntry id="UnaryTests_1q8z4wl">
+          <text>&lt;=200000000000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15u4kn5">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03do872">
+          <text>list contains(riskGroup, "V002")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1k7mrtu">
+          <text>"V001"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xxvdxd">
+          <text>"V001"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dl8i3m">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1239k40">
+          <text>"TQC11"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0hlz1u1">
+        <inputEntry id="UnaryTests_1ihm48z">
+          <text>&lt;=30000000000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qgxg3k">
+          <text>"RB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wa0j92">
+          <text>list contains(riskGroup, "V002")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xgng7m">
+          <text>"V001"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jime11">
+          <text>"V001"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rl4h58">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0amuzsl">
+          <text>"TQC10"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_4">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
